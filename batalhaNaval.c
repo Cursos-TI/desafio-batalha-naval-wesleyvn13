@@ -13,7 +13,13 @@ int main() {
 
  int navioVertical[3] = {3, 3, 3};
  int inicioNavioVertical = 7;
- int colunaNavioVertical =7;
+ int colunaNavioVertical =6;
+
+ // criando primeiro navio diagonal.
+
+ int navioDiagonal[3] = {3, 3, 3};
+ int navioDiagonalInicio = 7 ;
+ int navioDiagonalFinal = 0;
 
 
  // criando o "mar" do tabuleiro.
@@ -34,6 +40,15 @@ int main() {
     tabuleiro[inicioNavioVertical + i][colunaNavioVertical] = navioVertical[i];
  }
 
+ // posicionando o navio diagonal
+ for (int i = 0; i < 3; i++) {
+    tabuleiro[navioDiagonalInicio + i][navioDiagonalFinal + i] = navioDiagonal[i];
+ }
+
+ // posicionando o outro navio diagonal. Aqui usei apenas numeros para diferenciar.
+ for (int i = 0; i < 3; i++) {
+    tabuleiro[5 - i ][7 + i] = navioDiagonal[i];
+ }
 
  // imprimindo o tabuleiro com o navios posicionados
  for (int i = 0; i < 10; i++) {
