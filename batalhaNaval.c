@@ -1,62 +1,105 @@
 #include <stdio.h>
 
 int main() {
-//declarando matriz 10x10 para o tabuleiro.
- int tabuleiro[10][10];
 
-// criando arrays para o navio horizontal e variaveis para posicionamento.
- int navioHorizontal[3] = {3, 3, 3};
- int inicioNavioHorizontal = 3;
- int colunaNavioHorizontal =3;
+    int cone[5][5] = {{0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}, {0, 1, 1, 1, 0}, {1, 1, 1, 1, 1}, {0, 0, 0, 0, 0} };
+    int cruz[5][5] = {{0, 0, 1, 0, 0}, {0, 0, 1, 0, 0}, {0, 1, 1, 1, 0}, {0, 0, 1, 0, 0}, {0, 0, 1, 0, 0}};
+    int octa[5][5] = {{0, 0, 0, 0, 0}, {0, 0, 1, 0, 0}, {0, 1, 1, 1, 0}, {0, 0, 1, 0, 0}, {0, 0, 0, 0, 0}};
+    int tabuleiro [10][10] = {};
 
- // criando arrays para o navio vertical e variaveis para posicionamento.
-
- int navioVertical[3] = {3, 3, 3};
- int inicioNavioVertical = 7;
- int colunaNavioVertical =6;
-
- // criando primeiro navio diagonal.
-
- int navioDiagonal[3] = {3, 3, 3};
- int navioDiagonalInicio = 7 ;
- int navioDiagonalFinal = 0;
-
-
- // criando o "mar" do tabuleiro.
- for (int i = 0; i < 10; i++) {
-    for (int j = 0; j < 10; j++) {
-       tabuleiro[i][j] = 0;
+//montando ataque cone
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            printf("%d ", cone[i][j]); //aqui imprime o cone para mostrar no termial como é o desenho.
+        }
+        printf("\n");
     }
- }
+
+    int Inicio = 5;
+    int Final = 5;
+
+printf("\n");
+
+//montando ateque cruz
+
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            printf("%d ", cruz[i][j]); //aqui imprime a cruz para mostrar no termial como é o desenho.
+        }
+        printf("\n");
+    }
+
+printf("\n");
+
+//montando ataque octaedro
+
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+        printf("%d ", octa[i][j]); //aqui imprime o octaedro para mostrar no termial como é o desenho.
+        }
+        printf("\n");
+    }
 
 
-// posicionando o navio horizontal
- for (int i = 0; i < 3; i++){
-    tabuleiro[inicioNavioHorizontal][colunaNavioHorizontal + i] = navioHorizontal[i];
- }
+//montando "mar" do tabuleiro
 
- // posicionando o navio vertical
- for (int i = 0; i < 3; i++){
-    tabuleiro[inicioNavioVertical + i][colunaNavioVertical] = navioVertical[i];
- }
+    for(int i = 0; i < 10; i++) {
+        for(int j = 0; j < 10; j++) {
+            tabuleiro[i][j] = 0;
+        }
+    }
 
- // posicionando o navio diagonal
- for (int i = 0; i < 3; i++) {
-    tabuleiro[navioDiagonalInicio + i][navioDiagonalFinal + i] = navioDiagonal[i];
- }
+printf("\n");
 
- // posicionando o outro navio diagonal. Aqui usei apenas numeros para diferenciar.
- for (int i = 0; i < 3; i++) {
-    tabuleiro[5 - i ][7 + i] = navioDiagonal[i];
- }
 
- // imprimindo o tabuleiro com o navios posicionados
- for (int i = 0; i < 10; i++) {
+//colocando ataques no tabuleiro.
+
+//colocando o cone no tabuleiro.
+
+for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
+        tabuleiro[Inicio + i][Final + j] = cone[i][j]; // aqui define onde vai ser localizado o cone.
+    }
+   
+}
+
+//colocando a cruz no tabuleiro
+
+for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
+        tabuleiro[(Inicio-5) + i][(Final - 5)+ j] = cruz[i][j]; // aqui define onde vai ser localizado a cruz
+    }
+   
+}
+
+//colocando o octaedro no tabuleiro
+
+for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
+        tabuleiro[(Inicio-5) + i][Final + j] = octa[i][j];   // aqui define onde vai ser localizado o octaendro
+    }
+   
+}
+
+//imprimindo tabuleiro
+    
+for (int i = 0; i < 10; i++) {
     for (int j = 0; j < 10; j++) {
-        printf("%d  ", tabuleiro[i][j]);
+        if (tabuleiro[i][j] == 1) {
+            printf("5  ");
+        } else {
+            printf("%d  ", tabuleiro[i][j]);
+        }
+        
+        
+        
     }
     printf("\n");
- }
+}
+
+
+
+    
 
     return 0;
 }
